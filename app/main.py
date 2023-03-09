@@ -1,4 +1,3 @@
-from ast import Delete
 from typing import Optional, List
 from typing_extensions import deprecated
 from fastapi import FastAPI, Response, status, HTTPException, Depends
@@ -10,7 +9,7 @@ from time import sleep
 from sqlalchemy.orm import Session
 from . import models, schemas, utils
 from .database import engine, SessionLocal, get_db
-from .routers import post, user
+from .routers import post, user, auth
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -33,10 +32,11 @@ my_posts = [{"title": "title of post 1", "content": "content of post 1", "id": 1
 
 app.include_router(post.router)
 app.include_router(user.router)
+app.include_router(auth.router)
 
 @app.get("/")
 def root():
     return {"message": "welcome to my api"}
 
-
+# try to fix this
 
