@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
 from sqlalchemy.orm import relationship
+
 class Post(Base):
     __tablename__ = "posts"
     
@@ -25,6 +26,7 @@ class User(Base):
     password = Column(String, nullable=False)
     created_on = Column(TIMESTAMP(timezone=True), 
                         nullable=False, server_default=text('now()'))
+    phone_number = Column(String)
 
 class Vote(Base):
     __tablename__ = "votes"
